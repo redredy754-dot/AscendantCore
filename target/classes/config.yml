@@ -1,0 +1,108 @@
+# AscendantCore - everything here can also be changed in-game with /ascendantcore:gui
+# Messages use MiniMessage format: https://docs.advntr.dev/minimessage/format.html
+messages:
+  prefix: "<gradient:#a855f7:#ec4899><bold>AscendantCore</bold></gradient> <dark_gray>»</dark_gray> "
+  cleaner-warning: "<yellow>Cleaning items on ground in <red><time></red>!"
+  cleaner-done: "<green>Cleaned <white><count></white> items on ground."
+  restart-announce: "<red>Server restarting in <yellow><time></yellow>!"
+  restart-kick: "<red>The server is restarting. Rejoin in a moment!"
+
+modules:
+  shield-stunning:        # ON = axes disable shields (vanilla). OFF = shields can't be stunned.
+    enabled: true
+  attribute-swapping:     # ON = allowed (vanilla). OFF = hits dealt within 1 tick of a hotbar swap are cancelled.
+    enabled: true
+  one-player-sleep:
+    enabled: false
+  string-command:         # /string turns cobwebs in your hand into 4 string each
+    enabled: false
+  click-villagers:        # sneak + right-click a villager with an empty hand to pick it up as a spawn egg
+    enabled: false
+  cobweb-cleaner:
+    enabled: false
+    seconds: 10
+  ban-items:
+    enabled: false
+    banned: []
+  mace:
+    enchant-limiter:
+      enabled: false
+      limits:
+        density: 3
+        wind_burst: 1
+        breach: 2
+        fire_aspect: 1
+        unbreaking: 3
+        mending: 1
+    limiter:
+      enabled: false
+      max-maces: 1
+      crafted: 0
+  potion-limiter:
+    enabled: false
+    banned: []
+  enchant-limiter:        # missing enchantments default to their vanilla max level
+    enabled: false
+    limits: {}
+  server-cleaner:
+    enabled: false
+    interval-seconds: 300
+    warn-seconds: [60, 10]
+    ignore-newer-than-seconds: 5
+  lifesteal:
+    enabled: false
+    starting-hearts: 10
+    max-hearts: 20
+    hearts-per-kill: 1
+    hearts-lost-on-death: 1
+    lose-heart-on-natural-death: false
+    elimination: SPECTATOR      # SPECTATOR or BAN
+    heart-item: true            # allow /withdrawheart
+    drop-heart-at-max: true     # killer receives a heart item when already at max hearts
+  infinite-restock:
+    enabled: false
+  clumps:
+    enabled: false
+    radius: 4.0
+    max-orb-value: 2000
+  item-stacker:
+    enabled: false
+    radius: 3.0
+    max-stack-size: 99          # hard limit is 99 (Minecraft cannot save larger item entities)
+    mode: BLACKLIST             # BLACKLIST = stack everything except list, WHITELIST = only stack list
+    list: []
+    show-name: true
+  server-restarter:
+    enabled: false
+    countdown-seconds: 60
+    announce-at: [60, 30, 10, 5, 4, 3, 2, 1]
+    protect-seconds: 10         # players take no damage during the last N seconds (nobody dies in combat)
+    method: SPIGOT_RESTART      # SPIGOT_RESTART needs restart-script in spigot.yml, otherwise use SHUTDOWN
+    min-uptime-minutes: 10      # resource triggers are ignored this long after startup (prevents restart loops)
+    ram-percent:
+      enabled: false
+      value: 90
+      checks: 3                 # consecutive 30s checks above the limit
+    ram-mb:
+      enabled: false
+      value: 6000
+    tps:
+      enabled: false
+      value: 12.0               # uses the 5-minute TPS average
+    scheduled:
+      enabled: false
+      times: ["06:00", "18:00"] # server local time, HH:mm
+  explosion-control:
+    enabled: false
+    global: {destruction: true, power: 1.0}
+    creeper: {destruction: true, power: 1.0}
+    tnt: {destruction: true, power: 1.0}
+    tnt-minecart: {destruction: true, power: 1.0}
+    end-crystal: {destruction: true, power: 1.0}
+    other: {destruction: true, power: 1.0}
+  optimizations:
+    enabled: false
+    spawn-limits: {monsters: 50, animals: 8, water-animals: 4, water-ambient: 10, ambient: 5}
+    view-distance: 8
+    simulation-distance: 6
+    entity-tracking-range: {players: 48, animals: 32, monsters: 40, misc: 24, other: 48}

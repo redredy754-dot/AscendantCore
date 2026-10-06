@@ -1,0 +1,26 @@
+name: AscendantCore
+version: '1.0.0'
+main: dev.ascendant.core.AscendantCore
+api-version: '1.21'
+description: All-in-one SMP optimization and rules core with a full in-game control panel.
+commands:
+  ascendantcore:
+    description: AscendantCore main command
+    aliases: [ascdcore, acore]
+    usage: /<command> [gui|reload|revive|stacker|restart]
+  string:
+    description: Convert the cobwebs in your hand into string
+    usage: /<command>
+  withdrawheart:
+    description: Turn hearts into heart items (lifesteal)
+    usage: /<command> [amount]
+permissions:
+  ascendantcore.admin:
+    description: Use the control panel and admin subcommands
+    default: op
+  ascendantcore.string:
+    default: true
+  ascendantcore.clickvillagers:
+    default: true
+  ascendantcore.withdrawheart:
+    default: true
