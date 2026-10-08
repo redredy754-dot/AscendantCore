@@ -1,21 +1,20 @@
-# AscendantCore
+# AscendantCore 1.1
 
-All-in-one SMP optimization + rules plugin for **Paper 1.21.11** (Java 21).
-
-Open the control panel with `/ascendantcore:gui`, `/ascdcore:gui`, or `/ascendantcore gui`.
-Left click toggles a module, right click configures it. Numbers are typed in an anvil (paper -> type value -> click result).
+Paper 1.21.11, Java 21. Open the panel with `/ascendantcore:gui`, `/ascdcore:gui` or `/ascendantcore gui`.
+Left click toggles, right click configures, numbers are typed in an anvil. Black and white GUI, noteblock "bit" sounds.
 
 ## Build
-    mvn clean package
-The jar is `target/AscendantCore.jar`. Drop it in `plugins/`.
+`mvn clean package` -> `target/AscendantCore.jar` (or let the GitHub Action in `.github/workflows` build it).
 
 ## Commands
-- `/ascendantcore [gui|reload|revive <player>|stacker <add|remove> <item>|restart [cancel]]` (alias `/ascdcore`, `/acore`) - `ascendantcore.admin`
-- `/string` - turns cobwebs in hand into string (module must be on)
-- `/withdrawheart [amount]` - lifesteal hearts to items
+- `/ascendantcore [gui|reload|revive <player>|restart [cancel|status]]` (aliases `/ascdcore`, `/acore`)
+- `/ascdrestart [cancel|status]` - start the restart countdown / see RAM, TPS, uptime and the restart method
+- `/string` - fills your inventory with string
+- `/withdrawheart [amount]`
 
 ## Notes
-- Item stacker is capped at 99 per ground stack (Minecraft cannot save larger item entities).
-- Entity tracking range has no live API: the GUI button writes it to spigot.yml (backup created) and it applies on restart.
-- Limiters apply on anvil / enchanting table / crafting; they do not rewrite items that already exist.
-- Infinite restock raises each trade's max uses, so villagers keep that high limit if you turn the module off.
+- Restart method AUTO uses the spigot.yml restart-script when the file exists, otherwise it shuts down (your host/panel starts it again).
+- Safezone wall needs WorldGuard (regions with pvp = deny). It only ever affects players who are in combat.
+- Entity tracking range has no live API: the GUI button writes it to spigot.yml (backup made), restart to apply.
+- A true "disable health indicator mod" needs packet-level spoofing (ProtocolLib/PacketEvents) and is NOT included.
+- Anti-minimap codes are only a request to the client: mods that ignore them can't be stopped by a server plugin.
